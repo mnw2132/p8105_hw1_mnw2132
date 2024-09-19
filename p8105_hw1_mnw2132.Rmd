@@ -11,10 +11,9 @@ library(palmerpenguins)
 ```
 
 ## Problem 1 
-**Download the package with the dataset**
+**Download the package and load the dataset**
 install.packages("palmerpenguins")
 
-**Load penguin data set**
 data("penguins", package = "palmerpenguins")
 
 **Description of penguins data set**
@@ -35,18 +34,24 @@ The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm=TRUE)`.
 install.packages("ggplot2")
 library(ggplot2)
 
-*Create a dataframe containing variables for our plot.*
-ggplot(data = penguins, aes(x= bill_length_mm, y= flipper_length_mm, color=species))+geom_point()
+*Create a data frame containing variables for our plot.*
+```{r scatterplot}
+library(ggplot2)
+library(palmerpenguins)
+library(tidyverse)
+
+ggplot (data=penguins, aes(x= bill_length_mm, y= flipper_length_mm, color=species))+geom_point()
 
 ggsave("flippervsbill_scatterplot.png")
+```
 
 ## Problem 2
-`df<- data.frame(
+df<- data.frame(
   randomsample=rnorm(10),
   greater_than_zero=rnorm(10)>0,
   character=letters[1:10],
   factor=factor(sample(c("A","B","C"),10,replace=TRUE))
-)`
+)
 **Means**
-`means<-sapply(df,function(x){if(is.numeric(x) || is.logical(x) || is.factor(x)){mean(x, na.rm=TRUE)}else{NA}})
-means`
+means<-sapply(df,function(x){if(is.numeric(x) || is.logical(x) || is.factor(x))}else{NA})
+means
