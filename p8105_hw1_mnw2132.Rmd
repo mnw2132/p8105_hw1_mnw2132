@@ -8,7 +8,6 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(palmerpenguins)
-library(ggplot2)
 ```
 
 ## Problem 1 
@@ -35,14 +34,11 @@ The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm=TRUE)`.
 **Make a scatterplot**
 install.packages("ggplot2")
 library(ggplot2)
-library(palmerpenguins)
-data("penguins")
 
 *Create a dataframe containing variables for our plot.*
-ggplot(data = penguins, aes(x= bill_length_mm, y= flipper_length_mm))+geom_point()
+ggplot(data = penguins, aes(x= bill_length_mm, y= flipper_length_mm, color=species))+geom_point()
 
-    
-`ggsave("flippervsbill_scatterplot.png")`
+ggsave("flippervsbill_scatterplot.png")
 
 ## Problem 2
 `df<- data.frame(
@@ -52,5 +48,5 @@ ggplot(data = penguins, aes(x= bill_length_mm, y= flipper_length_mm))+geom_point
   factor=factor(sample(c("A","B","C"),10,replace=TRUE))
 )`
 **Means**
-`means<-sapply(df,function(x){if(is.numeric(x) || is.logical(x) || is.factior(x)){mean(x, na.rm=TRUE)}else{NA}})
+`means<-sapply(df,function(x){if(is.numeric(x) || is.logical(x) || is.factor(x)){mean(x, na.rm=TRUE)}else{NA}})
 means`
