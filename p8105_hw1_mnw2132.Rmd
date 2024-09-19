@@ -1,0 +1,56 @@
+---
+title: "p8105_hw1_mnw2132"
+author: "Mary Williams"
+date: "2024-09-18"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(palmerpenguins)
+library(ggplot2)
+```
+
+## Problem 1 
+**Download the package with the dataset**
+install.packages("palmerpenguins")
+
+**Load penguin data set**
+data("penguins", package = "palmerpenguins")
+
+**Description of penguins data set**
+
+*Data in the set, including names/values of important variables*
+
+The columns names are `r colnames(penguins)`.
+
+An overall summary of the data includes `r summary(penguins)`.
+
+*Size of the data*
+The data set includes `r nrow(penguins)` rows, made up of individual penguins, and `r ncol(penguins)` columns, made up of different variables. 
+
+*Mean flipper length*
+The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm=TRUE)`.
+
+**Make a scatterplot**
+install.packages("ggplot2")
+library(ggplot2)
+library(palmerpenguins)
+data("penguins")
+
+*Create a dataframe containing variables for our plot.*
+ggplot(data = penguins, aes(x= bill_length_mm, y= flipper_length_mm))+geom_point()
+
+    
+`ggsave("flippervsbill_scatterplot.png")`
+
+## Problem 2
+`df<- data.frame(
+  randomsample=rnorm(10),
+  greater_than_zero=rnorm(10)>0,
+  character=letters[1:10],
+  factor=factor(sample(c("A","B","C"),10,replace=TRUE))
+)`
+**Means**
+`means<-sapply(df,function(x){if(is.numeric(x) || is.logical(x) || is.factior(x)){mean(x, na.rm=TRUE)}else{NA}})
+means`
