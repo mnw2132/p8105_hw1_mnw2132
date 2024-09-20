@@ -5,6 +5,8 @@ date: "2024-09-18"
 output: github_document
 ---
 
+## Problem 1 
+**Download the package and load the dataset**
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(palmerpenguins)
@@ -12,8 +14,6 @@ library(ggplot2)
 library(tidyverse)
 ```
 
-## Problem 1 
-**Download the package and load the dataset**
 install.packages("palmerpenguins")
 
 data("penguins", package = "palmerpenguins")
@@ -33,15 +33,8 @@ The data set includes `r nrow(penguins)` rows, made up of individual penguins, a
 The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm=TRUE)`.
 
 **Make a scatterplot**
-install.packages("ggplot2")
-library(ggplot2)
-
-*Create a data frame containing variables for our plot.*
-
 
 ```{r scatterplot}
-
-
 ggplot (data=penguins, aes(x= bill_length_mm, y= flipper_length_mm, color=species))+geom_point()
 
 ggsave("flippervsbill_scatterplot.png")
@@ -54,7 +47,7 @@ Q2 <- tibble(
   randomsample = rnorm(10),
   greater_than_zero = rnorm(10) > 0,
   character = letters[1:10],
-  factor = factor(rep(c("Level_1","Level_2","Level_3"), length.out = 10)))
+  factor = factor(sample(c("Level_1","Level_2","Level_3"), 10, replace = TRUE)))
 ```
 **Calculate the means**
 ```{r mean}
@@ -65,13 +58,14 @@ mean(pull(Q2,factor))
 ```
 Considering that the mean for the character vector and the factor vector cannot be calculated and received an answer of "NA", because they are not numeric, we can calculate them using as.numeric as follows. 
 
-**as.numeric to logical, character and factor variables**
+**Use as.numeric on logical, character and factor variables**
 ```{r as.numeric, eval=FALSE}
 mean(as.numeric(pull(Q2,greater_than_zero)))
 mean(as.numeric(pull(Q2,character)))
 mean(as.numeric(pull(Q2,factor)))
 ```
 
-The logical variables get coded as 1 or 0, which causes the mean=0.5. Meanwhile, the factor variable can get coded in regard to the levels of 1-3, thereby creating a mean close to 2. However, the character variables get changed into NA's by coercion, therefore a mean still cannot be calculate as the variables are NA. 
+The logical variables get coded as 1 or 0, which causes the mean=0.5. Meanwhile, the factor variable can get coded in regard to the levels of 1-3, thereby creating a mean of 2. However, the character variables get changed into NA's by coercion, therefore a mean still cannot be calculate as the variables are NA. 
 
+Q2
 
