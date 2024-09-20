@@ -56,7 +56,7 @@ mean(pull(Q2,greater_than_zero))
 mean(pull(Q2,character))
 mean(pull(Q2,factor))
 ```
-Considering that the mean for the character vector and the factor vector cannot be calculated and received an answer of "NA", because they are not numeric, we can calculate them using as.numeric as follows. 
+The mean for the character vector and the factor vector received an answer of "NA" because they are not numeric and therefore cannot have a mean calculated. 
 
 **Use as.numeric on logical, character and factor variables**
 ```{r as.numeric, eval=FALSE}
@@ -65,7 +65,4 @@ mean(as.numeric(pull(Q2,character)))
 mean(as.numeric(pull(Q2,factor)))
 ```
 
-The logical variables get coded as 1 or 0, which causes the mean=0.5. Meanwhile, the factor variable can get coded in regard to the levels of 1-3, thereby creating a mean of 2. However, the character variables get changed into NA's by coercion, therefore a mean still cannot be calculate as the variables are NA. 
-
-Q2
-
+The logical variables get coded as 1 or 0, which causes the mean=0.5. Meanwhile, the factor variable gets coded in regard to the levels of 1-3, thereby creating a mean of 2. However, the character variables get changed into NA's by coercion, therefore a mean still cannot be calculate as the variables are NA. 
