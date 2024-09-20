@@ -78,5 +78,18 @@ list(
   mean_factor = mean_factor
 )
 ```
+Considering that the character and the factor are not numeric or logical, we cannot find the means for them.
 
-Considering that the character and the factor are not numeric or logical, we cannot find the means for them. 
+**Convert with as.numeric**
+# Convert logical, character, and factor variables to numeric
+```{r}
+df_converted <- df %>%
+  mutate(
+    logical_numeric = as.numeric(logical_vector),
+    character_numeric = as.numeric(as.factor(character_vector)),  # Convert characters to factors first
+    factor_numeric = as.numeric(factor_vector)
+  )
+
+# Display the converted data frame
+df_converted
+```
